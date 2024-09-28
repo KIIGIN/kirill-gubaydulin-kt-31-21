@@ -1,0 +1,22 @@
+2024-09-28 09:23:57.0068 Info Registered target NLog.Targets.FileTarget(Name=my-file)
+2024-09-28 09:23:57.0407 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.4.2778. Product version: 5.3.4+73d83d3161d31288ca5c554cc50d27b6bed5f28b. GlobalAssemblyCache: False
+2024-09-28 09:23:57.0542 Info Validating config: TargetNames=my-file, ConfigItems=24 ConfigSection=NLog
+2024-09-28 09:23:57.0848 Info Configuration initialized.
+2024-09-28 09:23:57.3940 Info Validating config: TargetNames=my-file, ConfigItems=24 ConfigSection=NLog
+2024-09-28 09:23:57.3940 Info Validating config: TargetNames=my-file, ConfigItems=24 ConfigSection=NLog
+2024-09-28 09:24:34.1101 Warn FileTarget(Name=my-file): Failed to create file appender: C:\Users\gubay\OneDrive\Рабочий стол\7 семестр\Проектный практикум\kirill-gubaydulin-kt-31-21\temp\logfile-2024-09-28.log Exception: System.IO.IOException: Cannot create 'C:\Users\gubay\OneDrive\Рабочий стол\7 семестр\Проектный практикум\kirill-gubaydulin-kt-31-21\temp' because a file or directory with the same name already exists.
+   at System.IO.FileSystem.CreateDirectory(String fullPath, Byte[] securityDescriptor)
+   at System.IO.Directory.CreateDirectory(String path)
+   at NLog.Internal.FileAppenders.BaseFileAppender.TryCreateDirectoryFileStream(Boolean allowFileSharedWriting, Int32 overrideBufferSize)
+   at NLog.Internal.FileAppenders.BaseFileAppender.CreateFileStream(Boolean allowFileSharedWriting, Int32 overrideBufferSize)
+   at NLog.Internal.FileAppenders.SingleProcessFileAppender..ctor(String fileName, ICreateFileParameters parameters)
+   at NLog.Internal.FileAppenders.SingleProcessFileAppender.Factory.NLog.Internal.FileAppenders.IFileAppenderFactory.Open(String fileName, ICreateFileParameters parameters)
+   at NLog.Internal.FileAppenders.FileAppenderCache.CreateAppender(String fileName, Int32 freeSpot)
+2024-09-28 09:24:51.5433 Warn FileTarget(Name=my-file): Failed to create file appender: C:\Users\gubay\OneDrive\Рабочий стол\7 семестр\Проектный практикум\kirill-gubaydulin-kt-31-21\temp\logfile-2024-09-28.log Exception: System.IO.IOException: Cannot create 'C:\Users\gubay\OneDrive\Рабочий стол\7 семестр\Проектный практикум\kirill-gubaydulin-kt-31-21\temp' because a file or directory with the same name already exists.
+   at System.IO.FileSystem.CreateDirectory(String fullPath, Byte[] securityDescriptor)
+   at System.IO.Directory.CreateDirectory(String path)
+   at NLog.Internal.FileAppenders.BaseFileAppender.TryCreateDirectoryFileStream(Boolean allowFileSharedWriting, Int32 overrideBufferSize)
+   at NLog.Internal.FileAppenders.BaseFileAppender.CreateFileStream(Boolean allowFileSharedWriting, Int32 overrideBufferSize)
+   at NLog.Internal.FileAppenders.SingleProcessFileAppender..ctor(String fileName, ICreateFileParameters parameters)
+   at NLog.Internal.FileAppenders.SingleProcessFileAppender.Factory.NLog.Internal.FileAppenders.IFileAppenderFactory.Open(String fileName, ICreateFileParameters parameters)
+   at NLog.Internal.FileAppenders.FileAppenderCache.CreateAppender(String fileName, Int32 freeSpot)
