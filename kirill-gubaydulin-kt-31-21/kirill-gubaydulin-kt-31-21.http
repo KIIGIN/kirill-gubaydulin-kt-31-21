@@ -1,0 +1,6 @@
+@kirill_gubaydulin_kt_31_21_HostAddress = http://localhost:5037
+
+GET {{kirill_gubaydulin_kt_31_21_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
