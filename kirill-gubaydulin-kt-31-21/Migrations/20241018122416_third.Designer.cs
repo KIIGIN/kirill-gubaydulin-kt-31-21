@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using kirill_gubaydulin_kt_31_21.Database;
@@ -11,9 +12,11 @@ using kirill_gubaydulin_kt_31_21.Database;
 namespace kirill_gubaydulin_kt_31_21.Migrations
 {
     [DbContext(typeof(DeptDbContext))]
-    partial class DeptDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241018122416_third")]
+    partial class third
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
