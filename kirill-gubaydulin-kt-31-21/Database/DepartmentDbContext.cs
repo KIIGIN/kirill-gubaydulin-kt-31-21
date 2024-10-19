@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace kirill_gubaydulin_kt_31_21.Database
 {
-    public class DeptDbContext : DbContext
+    public class DepartmentDbContext : DbContext
     {
         DbSet<Teacher> Teachers { get; set; }
         DbSet<Degree> Degrees { get; set; }
@@ -24,7 +24,7 @@ namespace kirill_gubaydulin_kt_31_21.Database
             modelBuilder.ApplyConfiguration(new LoadConfiguration());
         }
 
-        public DeptDbContext(DbContextOptions<DeptDbContext> options) : base(options) 
+        public DepartmentDbContext(DbContextOptions<DepartmentDbContext> options) : base(options) 
         { 
         }
     }

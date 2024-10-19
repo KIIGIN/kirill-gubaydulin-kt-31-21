@@ -12,6 +12,8 @@
         public Position Position { get; set; }
         public int? DegreeId { get; set; }
         public Degree Degree { get; set; }
+        public int? DisciplineId { get; set; }
+        public Discipline Discipline { get; set; }
         public int? LoadId { get; set; }
         public Load Load { get; set; }
         public Teacher() { }

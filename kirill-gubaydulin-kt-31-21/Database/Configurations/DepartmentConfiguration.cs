@@ -26,18 +26,27 @@ namespace kirill_gubaydulin_kt_31_21.Database.Configurations
                 .HasColumnType(ColumnType.String)
                 .HasMaxLength(100);
 
+            builder.Property(p => p.FoundingTime)
+                .HasColumnName("dt_founding_time")
+                .HasColumnType(ColumnType.Date)
+                .HasDefaultValueSql("NOW()");
+
             // Teacher
-            builder.HasOne(p => p.Teacher)
-                .WithMany()
-                .HasForeignKey(p => p.TeacherId)
-                .HasConstraintName("fk_teacher_id")
+            builder.Property(p => p.LeadId)
+                .HasColumnName("lead_id")
+                .HasColumnType(ColumnType.Int);
+
+            builder.HasOne(p => p.Leader)
+                .WithOne()
+                .HasForeignKey<Department>(p => p.LeadId)
+                .HasConstraintName("fk_lead_id")
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasIndex(
-                p => p.TeacherId, $"idx_{TableName}_fk_teacher_id"
+                p => p.LeadId, $"idx_{TableName}_fk_lead_id"
             );
 
-            builder.Navigation(p => p.Teacher)
+            builder.Navigation(p => p.Leader)
                 .AutoInclude();
 
             builder.ToTable(TableName);
