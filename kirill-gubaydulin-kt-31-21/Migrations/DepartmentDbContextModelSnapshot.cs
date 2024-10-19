@@ -2,7 +2,6 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using kirill_gubaydulin_kt_31_21.Database;
@@ -11,12 +10,10 @@ using kirill_gubaydulin_kt_31_21.Database;
 
 namespace kirill_gubaydulin_kt_31_21.Migrations
 {
-    [DbContext(typeof(DeptDbContext))]
-    [Migration("20241018122416_third")]
-    partial class third
+    [DbContext(typeof(DepartmentDbContext))]
+    partial class DepartmentDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -62,15 +59,22 @@ namespace kirill_gubaydulin_kt_31_21.Migrations
                         .HasColumnName("c_department_name");
 
                     b.Property<DateTime>("FoundingTime")
-                        .HasColumnType("timestamp with time zone");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp")
+                        .HasColumnName("dt_founding_time")
+                        .HasDefaultValueSql("NOW()");
 
-                    b.Property<int?>("TeacherId")
-                        .HasColumnType("integer");
+                    b.Property<int?>("LeadId")
+                        .HasColumnType("int4")
+                        .HasColumnName("lead_id");
 
                     b.HasKey("DepartmentId")
                         .HasName("pk_cd_department_department_id");
 
-                    b.HasIndex(new[] { "TeacherId" }, "idx_cd_department_fk_teacher_id");
+                    b.HasIndex("LeadId")
+                        .IsUnique();
+
+                    b.HasIndex(new[] { "LeadId" }, "idx_cd_department_fk_lead_id");
 
                     b.ToTable("cd_department", (string)null);
                 });
@@ -90,14 +94,8 @@ namespace kirill_gubaydulin_kt_31_21.Migrations
                         .HasColumnType("varchar")
                         .HasColumnName("c_discipline_name");
 
-                    b.Property<int?>("TeacherId")
-                        .HasColumnType("integer")
-                        .HasColumnName("teacher_id");
-
                     b.HasKey("DisciplineId")
                         .HasName("pk_cd_discipline_discipline_id");
-
-                    b.HasIndex(new[] { "TeacherId" }, "idx_cd_discipline_fk_teacher_id");
 
                     b.ToTable("cd_discipline", (string)null);
                 });
@@ -159,15 +157,19 @@ namespace kirill_gubaydulin_kt_31_21.Migrations
                         .HasColumnType("int4")
                         .HasColumnName("department_id");
 
+                    b.Property<int?>("DisciplineId")
+                        .HasColumnType("int4")
+                        .HasColumnName("discipline_id");
+
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasMaxLength(50)
+                        .HasMaxLength(100)
                         .HasColumnType("varchar")
                         .HasColumnName("c_teacher_firstname");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasMaxLength(50)
+                        .HasMaxLength(100)
                         .HasColumnType("varchar")
                         .HasColumnName("c_teacher_lastname");
 
@@ -177,7 +179,7 @@ namespace kirill_gubaydulin_kt_31_21.Migrations
 
                     b.Property<string>("MiddleName")
                         .IsRequired()
-                        .HasMaxLength(50)
+                        .HasMaxLength(100)
                         .HasColumnType("varchar")
                         .HasColumnName("c_teacher_middlename");
 
@@ -192,6 +194,8 @@ namespace kirill_gubaydulin_kt_31_21.Migrations
 
                     b.HasIndex(new[] { "DepartmentId" }, "idx_cd_teacher_fk_department_id");
 
+                    b.HasIndex(new[] { "DisciplineId" }, "idx_cd_teacher_fk_discipline_id");
+
                     b.HasIndex(new[] { "LoadId" }, "idx_cd_teacher_fk_load_id");
 
                     b.HasIndex(new[] { "PositionId" }, "idx_cd_teacher_fk_position_id");
@@ -201,24 +205,13 @@ namespace kirill_gubaydulin_kt_31_21.Migrations
 
             modelBuilder.Entity("kirill_gubaydulin_kt_31_21.Models.Department", b =>
                 {
-                    b.HasOne("kirill_gubaydulin_kt_31_21.Models.Teacher", "Teacher")
-                        .WithMany()
-                        .HasForeignKey("TeacherId")
+                    b.HasOne("kirill_gubaydulin_kt_31_21.Models.Teacher", "Leader")
+                        .WithOne()
+                        .HasForeignKey("kirill_gubaydulin_kt_31_21.Models.Department", "LeadId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .HasConstraintName("fk_teacher_id");
+                        .HasConstraintName("fk_lead_id");
 
-                    b.Navigation("Teacher");
-                });
-
-            modelBuilder.Entity("kirill_gubaydulin_kt_31_21.Models.Discipline", b =>
-                {
-                    b.HasOne("kirill_gubaydulin_kt_31_21.Models.Teacher", "Teacher")
-                        .WithMany()
-                        .HasForeignKey("TeacherId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .HasConstraintName("fk_teacher_id");
-
-                    b.Navigation("Teacher");
+                    b.Navigation("Leader");
                 });
 
             modelBuilder.Entity("kirill_gubaydulin_kt_31_21.Models.Teacher", b =>
@@ -235,6 +228,12 @@ namespace kirill_gubaydulin_kt_31_21.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .HasConstraintName("fk_department_id");
 
+                    b.HasOne("kirill_gubaydulin_kt_31_21.Models.Discipline", "Discipline")
+                        .WithMany()
+                        .HasForeignKey("DisciplineId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasConstraintName("fk_discipline_id");
+
                     b.HasOne("kirill_gubaydulin_kt_31_21.Models.Load", "Load")
                         .WithMany()
                         .HasForeignKey("LoadId");
@@ -248,6 +247,8 @@ namespace kirill_gubaydulin_kt_31_21.Migrations
                     b.Navigation("Degree");
 
                     b.Navigation("Department");
+
+                    b.Navigation("Discipline");
 
                     b.Navigation("Load");
 

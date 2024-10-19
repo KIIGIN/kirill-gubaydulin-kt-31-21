@@ -25,19 +25,19 @@ namespace kirill_gubaydulin_kt_31_21.Database.Configurations
             builder.Property(p => p.FirstName)
                 .HasColumnName("c_teacher_firstname")
                 .HasColumnType(ColumnType.String)
-                .HasMaxLength(50);
+                .HasMaxLength(100);
 
             builder.Property(p => p.LastName)
                 .HasColumnName("c_teacher_lastname")
                 .HasColumnType(ColumnType.String)
-                .HasMaxLength(50);
+                .HasMaxLength(100);
 
             builder.Property(p => p.MiddleName)
                 .HasColumnName("c_teacher_middlename")
                 .HasColumnType(ColumnType.String)
-                .HasMaxLength(50);
+                .HasMaxLength(100);
 
-            // Departament
+            // Department
             builder.Property(p => p.DepartmentId)
                 .HasColumnName("department_id")
                 .HasColumnType(ColumnType.Int);
@@ -89,6 +89,24 @@ namespace kirill_gubaydulin_kt_31_21.Database.Configurations
             );
 
             builder.Navigation(p => p.Degree)
+                .AutoInclude();
+
+            // Discipline
+            builder.Property(p => p.DisciplineId)
+                .HasColumnName("discipline_id")
+                .HasColumnType(ColumnType.Int);
+
+            builder.HasOne(p => p.Discipline)
+                .WithMany()
+                .HasForeignKey(p => p.DisciplineId)
+                .HasConstraintName("fk_discipline_id")
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasIndex(
+                p => p.DisciplineId, $"idx_{TableName}_fk_discipline_id"
+            );
+
+            builder.Navigation(p => p.Discipline)
                 .AutoInclude();
 
             // Load
