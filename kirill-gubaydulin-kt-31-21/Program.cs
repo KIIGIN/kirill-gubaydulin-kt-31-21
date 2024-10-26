@@ -1,5 +1,6 @@
 using kirill_gubaydulin_kt_31_21.Database;
 using kirill_gubaydulin_kt_31_21.ServiceExtensions;
+using kirill_gubaydulin_kt_31_21.Middlewares;
 
 using Microsoft.EntityFrameworkCore;
 using NLog;
@@ -33,6 +34,8 @@ try
         app.UseSwagger();
         app.UseSwaggerUI();
     }
+
+    app.UseMiddleware<ExceptionHandlerMiddleware>();
 
     app.UseAuthorization();
 
