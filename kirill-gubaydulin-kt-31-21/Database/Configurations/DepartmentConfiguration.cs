@@ -29,7 +29,7 @@ namespace kirill_gubaydulin_kt_31_21.Database.Configurations
             builder.Property(p => p.FoundingTime)
                 .HasColumnName("dt_founding_time")
                 .HasColumnType(ColumnType.Date)
-                .HasDefaultValueSql("NOW()");
+                .HasDefaultValueSql("CURRENT_DATE");
 
             // Teacher
             builder.Property(p => p.LeadId)
@@ -40,14 +40,11 @@ namespace kirill_gubaydulin_kt_31_21.Database.Configurations
                 .WithOne()
                 .HasForeignKey<Department>(p => p.LeadId)
                 .HasConstraintName("fk_lead_id")
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.SetNull);
 
             builder.HasIndex(
                 p => p.LeadId, $"idx_{TableName}_fk_lead_id"
             );
-
-            builder.Navigation(p => p.Leader)
-                .AutoInclude();
 
             builder.ToTable(TableName);
         }
