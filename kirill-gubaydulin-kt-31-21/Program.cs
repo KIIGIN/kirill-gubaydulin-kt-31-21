@@ -1,4 +1,6 @@
 using kirill_gubaydulin_kt_31_21.Database;
+using kirill_gubaydulin_kt_31_21.ServiceExtensions;
+
 using Microsoft.EntityFrameworkCore;
 using NLog;
 using NLog.Web;
@@ -18,8 +20,10 @@ try
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
 
-    builder.Services.AddDbContext<DeptDbContext>(options =>
+    builder.Services.AddDbContext<DepartmentDbContext>(options =>
         options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+    builder.Services.AddServices();
 
     var app = builder.Build();
 

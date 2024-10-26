@@ -12,7 +12,7 @@ using kirill_gubaydulin_kt_31_21.Database;
 namespace kirill_gubaydulin_kt_31_21.Migrations
 {
     [DbContext(typeof(DepartmentDbContext))]
-    [Migration("20241019092145_CreateDatabase")]
+    [Migration("20241025162619_CreateDatabase")]
     partial class CreateDatabase
     {
         /// <inheritdoc />

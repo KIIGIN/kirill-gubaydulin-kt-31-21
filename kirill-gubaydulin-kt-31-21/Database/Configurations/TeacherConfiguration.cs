@@ -46,14 +46,11 @@ namespace kirill_gubaydulin_kt_31_21.Database.Configurations
                 .WithMany()
                 .HasForeignKey(p => p.DepartmentId)
                 .HasConstraintName("fk_department_id")
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.SetNull);
 
             builder.HasIndex(
                 p => p.DepartmentId, $"idx_{TableName}_fk_department_id"
             );
-
-            builder.Navigation(p => p.Department)
-                .AutoInclude();
 
             // Position
             builder.Property(p => p.PositionId)
@@ -64,7 +61,7 @@ namespace kirill_gubaydulin_kt_31_21.Database.Configurations
                 .WithMany()
                 .HasForeignKey(p => p.PositionId)
                 .HasConstraintName("fk_position_id")
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.SetNull);
 
             builder.HasIndex(
                 p => p.PositionId, $"idx_{TableName}_fk_position_id"
@@ -82,7 +79,7 @@ namespace kirill_gubaydulin_kt_31_21.Database.Configurations
                 .WithMany()
                 .HasForeignKey(p => p.DegreeId)
                 .HasConstraintName("fk_degree_id")
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.SetNull);
 
             builder.HasIndex(
                 p => p.DegreeId, $"idx_{TableName}_fk_degree_id"
@@ -100,7 +97,7 @@ namespace kirill_gubaydulin_kt_31_21.Database.Configurations
                 .WithMany()
                 .HasForeignKey(p => p.DisciplineId)
                 .HasConstraintName("fk_discipline_id")
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.SetNull);
 
             builder.HasIndex(
                 p => p.DisciplineId, $"idx_{TableName}_fk_discipline_id"
