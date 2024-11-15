@@ -36,43 +36,52 @@ namespace kirill_gubaydulin_kt_31_21.Controllers
         [HttpPost("AddNewTeacher")]
         public async Task<IActionResult> AddNewTeacherAsync([FromBody] AddNewTeacherDto addNewTeacherDto, CancellationToken cancellationToken = default)
         {
-            try
-            {
-                await _teacherService.AddNewTeacherAsync(addNewTeacherDto, cancellationToken);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest($"Error: {ex.Message}");
-            }
+            //try
+            //{
+            //    await _teacherService.AddNewTeacherAsync(addNewTeacherDto, cancellationToken);
+            //    return Ok();
+            //}
+            //catch (Exception ex)
+            //{
+            //    return BadRequest($"Error: {ex.Message}");
+            //}
+
+            await _teacherService.AddNewTeacherAsync(addNewTeacherDto, cancellationToken);
+            return Ok();
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> EditTeacherByIdAsync([FromRoute] int id, [FromBody] AddNewTeacherDto addNewTeacherDto, CancellationToken cancellationToken = default)
         {
-            try
-            {
-                await _teacherService.EditTeacherByIdAsync(id, addNewTeacherDto, cancellationToken);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest($"Error: {ex.Message}");
-            }
+            //try
+            //{
+            //    await _teacherService.EditTeacherByIdAsync(id, addNewTeacherDto, cancellationToken);
+            //    return Ok();
+            //}
+            //catch (Exception ex)
+            //{
+            //    return BadRequest($"Error: {ex.Message}");
+            //}
+
+            await _teacherService.EditTeacherByIdAsync(id, addNewTeacherDto, cancellationToken);
+            return Ok();
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTeacherByIdAsync([FromRoute] int id, CancellationToken cancellationToken = default)
         {
-            try
-            {
-                await _teacherService.DeleteTeacherByIdAsync(id, cancellationToken);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest($"Error: {ex.Message}");
-            }
+            //try
+            //{
+            //    await _teacherService.DeleteTeacherByIdAsync(id, cancellationToken);
+            //    return Ok();
+            //}
+            //catch (Exception ex)
+            //{
+            //    return BadRequest($"Error: {ex.Message}");
+            //}
+
+            await _teacherService.DeleteTeacherByIdAsync(id, cancellationToken);
+            return Ok();
         }
     }
 }
